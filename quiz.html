@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cognify - Skill Assessment</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="quiz-style.css">
+</head>
+
+<body>
+
+  <div class="quiz-shell">
+
+    <!-- HEADER -->
+    <header class="quiz-header">
+
+      <div class="brand-row">
+
+        <div class="brand-logo">
+          <span>🧠</span>
+          <span>Cognify</span>
+        </div>
+
+        <nav class="quiz-nav">
+          <a href="/">Home</a>
+          <a href="/dashboard">Dashboard</a>
+        </nav>
+
+      </div>
+
+
+      <!-- HERO -->
+      <section class="quiz-hero">
+
+        <div>
+
+          <p class="eyebrow">
+            Skill Assessment
+          </p>
+
+          <h1>
+            Discover your technical strengths.
+          </h1>
+
+          <p class="hero-copy">
+            Select a technology and complete a technical assessment.
+            Cognify will analyze your performance and recommend
+            the next skill you should learn.
+          </p>
+
+        </div>
+
+        <div class="hero-card">
+        
+          <div>
+            <span>Questions</span>
+            <strong id="questionCount">10</strong>
+          </div>
+        
+          <div>
+            <span>Duration</span>
+            <strong id="quizDuration">10 min</strong>
+          </div>
+        
+        </div>
+
+      </section>
+
+    </header>
+
+
+    <!-- MAIN -->
+    <main class="quiz-main">
+
+
+      <!-- TECHNOLOGY SELECTION -->
+      <section id="technologySelection" class="quiz-card">
+
+        <div class="selection-header">
+
+          <p class="eyebrow">
+            Choose Technology
+          </p>
+
+          <h2>
+            What do you want to assess?
+          </h2>
+
+          <p>
+            Select one technology to start your technical assessment.
+          </p>
+
+        </div>
+
+
+        <div class="technology-grid">
+
+          <button class="technology-card" data-tech="c">
+            <span class="tech-icon">C</span>
+            <strong>C</strong>
+            <small>Programming Fundamentals</small>
+          </button>
+
+
+          <button class="technology-card" data-tech="cpp">
+            <span class="tech-icon">C++</span>
+            <strong>C++</strong>
+            <small>OOP & DSA Fundamentals</small>
+          </button>
+
+
+          <button class="technology-card" data-tech="java">
+            <span class="tech-icon">☕</span>
+            <strong>Java</strong>
+            <small>OOP & Core Java</small>
+          </button>
+
+
+          <button class="technology-card" data-tech="python">
+            <span class="tech-icon">🐍</span>
+            <strong>Python</strong>
+            <small>Python Fundamentals</small>
+          </button>
+
+
+          <button class="technology-card" data-tech="sql">
+            <span class="tech-icon">DB</span>
+            <strong>SQL</strong>
+            <small>Database Fundamentals</small>
+          </button>
+
+
+          <button class="technology-card" data-tech="html">
+            <span class="tech-icon">HTML</span>
+            <strong>HTML</strong>
+            <small>Web Structure</small>
+          </button>
+
+
+          <button class="technology-card" data-tech="css">
+            <span class="tech-icon">CSS</span>
+            <strong>CSS</strong>
+            <small>Styling & Layout</small>
+          </button>
+
+
+          <button class="technology-card" data-tech="javascript">
+            <span class="tech-icon">JS</span>
+            <strong>JavaScript</strong>
+            <small>Programming & Web</small>
+          </button>
+
+
+          <button class="technology-card" data-tech="node">
+            <span class="tech-icon">N</span>
+            <strong>Node.js</strong>
+            <small>Backend JavaScript</small>
+          </button>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- QUIZ -->
+      <section id="quizSection" class="quiz-card hidden">
+
+        <div class="selected-tech">
+
+          <button id="backToTechnologies" class="btn btn-tertiary">
+            ← Change Technology
+          </button>
+
+          <div>
+            <span>Assessment</span>
+            <strong id="selectedTechnology">
+              Java
+            </strong>
+          </div>
+
+        </div>
+
+
+        <div class="quiz-topbar">
+
+          <div class="quiz-progress">
+
+            <span id="quizProgressLabel">
+              Question 1 of 10
+            </span>
+
+            <div class="progress-track">
+
+              <div class="progress-bar" id="quizProgressBar">
+              </div>
+
+            </div>
+
+          </div>
+
+          <button id="resetQuiz" class="btn btn-tertiary">
+
+            Restart
+
+          </button>
+
+        </div>
+
+
+        <!-- QUESTION -->
+        <div class="question-panel" id="questionPanel">
+
+          <p class="question-concept" id="questionConcept">
+            OOP
+          </p>
+
+          <h2 id="questionTitle"></h2>
+
+          <div class="choices" id="choices">
+          </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <div class="quiz-footer">
+
+          <button id="prevButton" class="btn btn-secondary">
+
+            Previous
+
+          </button>
+
+          <button id="nextButton" class="btn btn-primary">
+
+            Next
+
+          </button>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- RESULTS -->
+      <section class="results-panel hidden" id="resultsPanel">
+
+        <div class="results-header">
+
+          <p class="eyebrow">
+            Assessment Complete
+          </p>
+
+          <h2>
+            Your Skill Assessment
+          </h2>
+
+          <p id="resultTechnology">
+            Java Assessment
+          </p>
+
+        </div>
+
+
+        <div class="results-grid">
+
+          <article>
+
+            <span>Score</span>
+
+            <strong id="finalScore">
+              0/10
+            </strong>
+
+          </article>
+
+
+          <article>
+
+            <span>Accuracy</span>
+
+            <strong id="finalPercentage">
+              0%
+            </strong>
+
+          </article>
+
+
+          <article>
+
+            <span>Recommended Path</span>
+
+            <strong id="recommendedPath">
+              -
+            </strong>
+
+          </article>
+
+        </div>
+
+
+        <div class="recommendation">
+
+          <h3>
+            Cognify Recommendation
+          </h3>
+
+          <p id="recommendationText">
+            Complete the assessment to receive your recommendation.
+          </p>
+
+        </div>
+
+
+        <div class="resource-summary">
+
+          <h3>
+            Suggested Learning Resources
+          </h3>
+
+          <ul id="recommendedResources" class="resource-list">
+          </ul>
+
+        </div>
+
+
+        <div class="results-actions">
+
+          <button id="takeAnotherQuiz" class="btn btn-primary">
+
+            Take Another Assessment
+
+          </button>
+
+          <a href="/dashboard" class="btn btn-secondary">
+
+            Back to Dashboard
+
+          </a>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <!-- QUESTION DATA -->
+  <script src="c.js"></script>
+  <script src="cpp.js"></script>
+  <script src="java.js"></script>
+  <script src="python.js"></script>
+  <script src="sql.js"></script>
+  <script src="html.js"></script>
+  <script src="css.js"></script>
+  <script src="javascript.js"></script>
+  <script src="node.js"></script>
+
+  <!-- CENTRAL QUESTION DATA -->
+  <script src="questions.js"></script>
+
+  <!-- QUIZ LOGIC -->
+  <script src="quiz-script.js"></script>
+
+</body>
+
+</html>
