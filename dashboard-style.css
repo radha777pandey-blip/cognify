@@ -3,14 +3,32 @@
     --bg: #f8fbff;
     --surface: #ffffff;
     --surface-soft: #f1f5ff;
+    --surface-alt: #f8fafc;
     --text: #0f172a;
     --muted: #64748b;
     --primary: #4f46e5;
     --primary-soft: rgba(79, 70, 229, 0.12);
     --success: #16a34a;
     --warning: #f59e0b;
+    --danger: #ef4444;
     --border: #e2e8f0;
     --shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="dark"] {
+    --bg: #0b0f19;
+    --surface: #111827;
+    --surface-soft: #1f2937;
+    --surface-alt: #162032;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --primary: #818cf8;
+    --primary-soft: rgba(129, 140, 248, 0.18);
+    --success: #22c55e;
+    --warning: #fbbf24;
+    --danger: #f87171;
+    --border: #334155;
+    --shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
 }
 
 * {
@@ -26,8 +44,9 @@ html {
 
 body {
     min-height: 100vh;
-    background: linear-gradient(180deg, #f8fbff 0%, #eef2ff 100%);
+    background: linear-gradient(180deg, var(--bg) 0%, var(--surface-soft) 100%);
     color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dashboard-shell {
@@ -566,3 +585,136 @@ body {
         font-size: 15px;
     }
 }
+
+/* ==================== PHASE 5: THEME, PROFILE & REAL TELEMETRY UI ==================== */
+
+.theme-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface-soft);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 7px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--primary-soft);
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.user-profile-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    padding: 5px 14px 5px 6px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.avatar-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.empty-state-card {
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    margin-top: 12px;
+}
+
+.empty-state-card i {
+    font-size: 36px;
+    color: var(--primary);
+    margin-bottom: 12px;
+}
+
+.empty-state-card h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+}
+
+.empty-state-card p {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 16px;
+}
+
+.btn-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn-cta-primary:hover {
+    opacity: 0.92;
+    transform: translateY(-2px);
+}
+
+/* Dark Mode Overrides for Dashboard Cards */
+[data-theme="dark"] .hero-card,
+[data-theme="dark"] .overview-card,
+[data-theme="dark"] .panel,
+[data-theme="dark"] .activity-card,
+[data-theme="dark"] .resource-item,
+[data-theme="dark"] .action-card,
+[data-theme="dark"] .dashboard-recommendation-summary,
+[data-theme="dark"] .empty-state-card {
+    background: var(--surface);
+    border-color: var(--border);
+    color: var(--text);
+}
+
+[data-theme="dark"] .hero-card strong,
+[data-theme="dark"] .score strong,
+[data-theme="dark"] .resource-stat strong,
+[data-theme="dark"] .panel-header h3,
+[data-theme="dark"] .path-step h4,
+[data-theme="dark"] .activity-card h4,
+[data-theme="dark"] .resource-item h4 {
+    color: var(--text);
+}
+
+[data-theme="dark"] .hero-copy,
+[data-theme="dark"] .hero-card span,
+[data-theme="dark"] .overview-card p,
+[data-theme="dark"] .panel-header p,
+[data-theme="dark"] .path-step p,
+[data-theme="dark"] .activity-card span,
+[data-theme="dark"] .resource-item small,
+[data-theme="dark"] .dashboard-recommendation-summary p {
+    color: var(--muted);
+}
+

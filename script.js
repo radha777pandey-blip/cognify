@@ -4,6 +4,10 @@ const loginBtn = document.getElementById("login");
 const signupForm = document.getElementById("signup-form");
 const signinForm = document.getElementById("signin-form");
 
+if (window.location.search.includes("mode=signup")) {
+  container.classList.add("active");
+}
+
 registerBtn.addEventListener("click", () => {
   container.classList.add("active");
 });
@@ -32,10 +36,13 @@ signupForm.addEventListener("submit", async (event) => {
 
   try {
     const result = await postJSON("/api/signup", data);
-    alert(result.message || "Signup completed");
     if (result.success) {
-      container.classList.remove("active");
-      signupForm.reset();
+      if (result.user) {
+        localStorage.setItem("cognifyUser", JSON.stringify(result.user));
+      }
+      window.location.href = "/dashboard";
+    } else {
+      alert(result.message || "Signup failed. Please try again.");
     }
   } catch (error) {
     alert("Signup failed. Please try again.");
@@ -55,6 +62,9 @@ signinForm.addEventListener("submit", async (event) => {
     const result = await postJSON("/api/signin", data);
     alert(result.message || "Sign in completed");
     if (result.success) {
+      if (result.user) {
+        localStorage.setItem("cognifyUser", JSON.stringify(result.user));
+      }
       window.location.href = "/dashboard";
     }
   } catch (error) {
