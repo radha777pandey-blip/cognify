@@ -40,7 +40,7 @@ signupForm.addEventListener("submit", async (event) => {
       if (result.user) {
         localStorage.setItem("cognifyUser", JSON.stringify(result.user));
       }
-      window.location.href = "/dashboard";
+      alert(result.message || "Signup completed");
     } else {
       alert(result.message || "Signup failed. Please try again.");
     }
